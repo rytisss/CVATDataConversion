@@ -31,7 +31,7 @@ public class ConversionSample
     {
         string xmlData = inputDir + "annotations.xml";
 
-        string annotationDir = outputDir + "Annoatations//";
+        string annotationDir = outputDir + "Annotations//";
         CreateDirectory(annotationDir);
         string photosJPGDir = outputDir + "PhotosJPG//";
         CreateDirectory(photosJPGDir);
@@ -89,7 +89,7 @@ public class ConversionSample
                 dicts.Add(outputDict);
             }
             string outputAnnotation = Newtonsoft.Json.JsonConvert.SerializeObject(dicts, Newtonsoft.Json.Formatting.Indented);
-            string jsonFilePath = annotationDir + Path.GetFileName(imageName) + ".json";
+            string jsonFilePath = annotationDir + Path.GetFileNameWithoutExtension(imageName) + ".json";
             try
             {
                 // Write the JSON data to the specified file
@@ -108,7 +108,7 @@ public class ConversionSample
                 {
                     using (Image image = Image.FromFile(imagePath))
                     {
-                        string jpgOutputPath = photosJPGDir + Path.GetFileName(imageName) + ".jpg";
+                        string jpgOutputPath = photosJPGDir + Path.GetFileNameWithoutExtension(imageName) + ".jpg";
                         image.Save(jpgOutputPath, ImageFormat.Jpeg);
                     }
                 }
